@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, of } from "rxjs";
+import { Observable, map, of } from "rxjs";
 import { PkmDataModel } from "src/app/core/domain/pokeon/pokemon-data.domain";
 import { GetPokemonListRepositorie } from "src/app/core/repositorie/pokemon/get-pokemon-list.repositorie";
 
@@ -8,7 +8,7 @@ import { GetPokemonListRepositorie } from "src/app/core/repositorie/pokemon/get-
     providedIn: 'root'
 })
 
-export class GetPokemonListRepository extends GetPokemonListRepositorie {
+export class GetPokemonListRepository extends GetPokemonListRepositorie {    
 
     constructor(private http: HttpClient) {
         super();
@@ -38,6 +38,11 @@ export class GetPokemonListRepository extends GetPokemonListRepositorie {
                 results: mapper
             }
         }));
+    }
+
+    getPokemonDetail(param: number): Observable<PkmDataModel> {
+        console.log(param)
+        return this.http.get<PkmDataModel>(`https://pokeapi.co/api/v2/ability/${param}`);
     }
 
 }

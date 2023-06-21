@@ -8,11 +8,11 @@ import { Observable } from "rxjs";
     providedIn: 'root'
 })
 
-export class RequestPokemonListPaginateUseCase implements UseCase<string, PkmDataModel> {
+export class RequestPokemonDetaiUsesCase implements UseCase<number, PkmDataModel> {
 
     constructor(private getList: GetPokemonListRepositorie) { }
 
-    execute(param: any): Observable<PkmDataModel> {
-        return this.getList.getPokemonListPaginate(param);
+    execute(param: number): Observable<PkmDataModel> {
+        return this.getList.getPokemonDetail(param);
     }
 }

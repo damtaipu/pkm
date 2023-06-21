@@ -1,14 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailComponent } from '../../components/detail/detail.component';
-import { Subject, delay, of, takeUntil } from 'rxjs';
-import { RequestPokemonList } from 'src/app/core/usecases/pokemon/list-pokemon.usecase';
+import { Observable, Subject, delay, of, takeUntil } from 'rxjs';
+import { RequestPokemonListUseCase } from 'src/app/core/usecases/pokemon/list-pokemon.usecase';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FilterListPipe } from 'src/app/shared/pipes/filter-list.pipe';
 import { PkmDataModel } from 'src/app/core/domain/pokeon/pokemon-data.domain';
-import { RequestPokemonListPaginate } from 'src/app/core/usecases/pokemon/list-pokemon-paginate.usecase';
+import { RequestPokemonListPaginateUseCase } from 'src/app/core/usecases/pokemon/list-pokemon-paginate.usecase';
+import { Store } from '@ngrx/store';
+import { comment, removeComment } from 'src/app/infra/store/action/comment/comment.actions';
+import { CommentsComponent } from '../../components/comments/comments.component';
+import { favorite, removeFavorite } from 'src/app/infra/store/action/favorite/favorite.actions';
 
 @Component({
   selector: 'pkm-list',
@@ -34,22 +38,23 @@ export class ListComponent implements OnInit, OnDestroy {
   page: number = 1;
   collectionSize: number = 0;
   loading: boolean = false;
+  showComment$!: Observable<any>
+  showFavorite$!: Observable<any>
+  commentRepository: Observable<any[]> = new Observable(e => e.next([]));
 
   constructor(
     private modalService: NgbModal,
-    private route: ActivatedRoute,
-    private router: Router,
-    private getListPkm: RequestPokemonList,
-    private getListPkmPaginate: RequestPokemonListPaginate,
-    private fb: FormBuilder
+    private getListPkm: RequestPokemonListUseCase,
+    private getListPkmPaginate: RequestPokemonListPaginateUseCase,
+    private fb: FormBuilder,
+    private store: Store<{ textcomment: any, favoritePkm: any }>
   ) {
 
-    this.route.url.subscribe(e => {
-      e.forEach(r => {
-        if (r.path === 'detail') {
-          this.openDetailRoute()
-        }
-      })
+    this.showComment$ = store.select('textcomment');
+    this.showFavorite$ = store.select('favoritePkm');
+
+    this.showFavorite$.subscribe(e => {
+      console.log(e)
     })
   }
 
@@ -82,19 +87,22 @@ export class ListComponent implements OnInit, OnDestroy {
     return this.formFilter.get('pkmFilterName')?.value
   }
 
-  openDetailRoute() {
-    this.currentDialog = this.modalService.open(DetailComponent, { centered: true, ariaLabelledBy: 'modal-basic-title' });
+  //---------------------------
+  // Modals
+  //---------------------------
+  openModalDetail(id: number) {
+    this.currentDialog = this.modalService.open(DetailComponent, { centered: true, size: 'lg'});
+    this.currentDialog.componentInstance.pkmId = id;
+  }
 
-    this.currentDialog.result.then((result: any) => {
-      this.router.navigateByUrl('/');
-    }, (reason: any) => {
-      this.router.navigateByUrl('/');
-    });
+  openModalComment(id: number) {
+    this.currentDialog = this.modalService.open(CommentsComponent, { centered: true, size: 'lg'});
+    this.currentDialog.componentInstance.pkmId = id;
   }
 
   callInitialList() {
     this.loading = true;
-    this.setformFieldFilter('')
+    this.setformFieldFilter('');
 
     this.getListPkm.execute().pipe(delay(800), takeUntil(this.destroy$)).subscribe((e: PkmDataModel) => {
       this.loading = false;
@@ -115,11 +123,11 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onLoadImg(evt: HTMLElement){
-    evt.remove()
+    evt.remove();
   }
 
   loadImg(id: any){
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
   }
 
   uppercaseTitle(title: string): string{
@@ -127,10 +135,15 @@ export class ListComponent implements OnInit, OnDestroy {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  removeComment(id: number) {
+    this.store.dispatch(removeComment({id: Number(id)}));
+  }
 
+  favorite(id: number) {
+    this.store.dispatch(favorite({id: id}));
+  }
 
-
-
-
-
+  removeFavorite(id: number) {
+    this.store.dispatch(removeFavorite({id: id}));
+  }
 }

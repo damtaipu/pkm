@@ -24,6 +24,29 @@
     }
 }
 
+.pkm-main::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .pkm-main::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .pkm-main::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .pkm-main::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .pkm-main::-webkit-scrollbar-thumb {    
+    border-radius: 6px;
+  }
+
 .pkm-main {
     height: 500px;
     overflow-y: scroll;
@@ -57,6 +80,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            cursor: pointer;
 
             .spinner-border {
                 position: absolute
@@ -110,6 +134,7 @@
         .pkm-favorite {
             width: 200px;
             text-align: center;
+            cursor: pointer;
 
             i {
                 font-size: 30px;

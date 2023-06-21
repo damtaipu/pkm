@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
     providedIn: 'root'
 })
 
-export class RequestPokemonList implements UseCase<string, PkmDataModel> {
+export class RequestPokemonListUseCase implements UseCase<string, PkmDataModel> {
 
     constructor(private getList: GetPokemonListRepositorie) { }
 
