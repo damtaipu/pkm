@@ -1,0 +1,59 @@
+<div class="pkm-input-filter container">
+    <img src="../../../../assets/poke-logo.png" alt="">
+
+    <form [formGroup]="formFilter">
+        <div class="input-group mb-3 pkm-input-group">
+            <input type="text" id="pkmFilterName" formControlName="pkmFilterName" class="form-control"
+                placeholder="Pesquisar pokémon">
+            <label class="input-group-text" for="pkmFilterName"><i class="bi bi-search"></i></label>
+        </div>
+    </form>
+</div>
+
+<div class="pkm-main container">
+    <div *ngIf="loading" class="pkm-loading">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="pkm-card rounded-pill" *ngFor="let pkm of pkmList?.results | filterList: formFieldFilter; index as i">
+        <div class="pkm-img">
+
+            <div #imgLoader class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+            <img (load)="onLoadImg(imgLoader)" [src]="loadImg(pkm.id)" height="150" width="150" alt="Pokemon" />
+        </div>
+        <div class="pkm-fields">
+            <div class="pkm-nome rounded-pill">
+                <span>{{uppercaseTitle(pkm.name)}}</span>
+            </div>
+
+            <div class="pkm-comment-btn">
+                <div class="pkm-comment rounded-pill">
+                    <span>Comentário</span>
+                </div>
+                <div class="pkm-buttons">
+                    <button type="button" class="btn rounded-pill">Adicionar comentário</button>
+                    <button type="button" class="btn btn-primary rounded-pill">Excluir comentário</button>
+                </div>
+            </div>
+        </div>
+        <div class="pkm-favorite"><i class="bi bi-star"></i></div>
+    </div>
+</div>
+
+<div class="pkm-paginate">
+    <ngb-pagination [collectionSize]="collectionSize" (pageChange)="callPaginateList($event)" [maxSize]="5"
+        [pageSize]="20" [(page)]="page" class="d-flex justify-content-center">
+        <ng-template ngbPaginationPrevious><i class="bi bi-chevron-left"></i></ng-template>
+        <ng-template ngbPaginationNext><i class="bi bi-chevron-right"></i></ng-template>
+    </ngb-pagination>
+</div>
+
+
+
+
+<a [routerLink]="['detail']">dffs</a>

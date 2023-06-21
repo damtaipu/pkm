@@ -1,0 +1,172 @@
+.pkm-input-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 500px;
+        margin: 20px 0 50px 0;
+    }
+
+    form {
+        width: 800px;
+        margin-bottom: 25px;
+    }
+
+    .pkm-input-group {
+        input {
+            border-right: none;
+        }
+
+        label {
+            background: #fff;
+        }
+    }
+}
+
+.pkm-main {
+    height: 500px;
+    overflow-y: scroll;
+
+    .pkm-loading {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+    }
+
+    div:first-child {
+        margin-top: 00;
+    }
+
+    div {
+        margin-top: 15px;
+    }
+
+    .pkm-card {
+        background-color: #3b87fa;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+
+        .pkm-img {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            .spinner-border {
+                position: absolute
+            }
+        }
+
+        .pkm-fields {
+            width: 700px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+
+            .pkm-nome {
+                background-color: #f2ca63;
+                padding: 5px 5px 5px 10px;
+            }
+
+            .pkm-comment-btn {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+
+                .pkm-comment {
+                    width: 400px;
+                    background-color: #f2ca63;
+                    height: 50px;
+                    padding: 5px 5px 5px 10px;
+                }
+
+                .pkm-buttons {
+                    display: contents;
+
+                    button:first-child {
+                        background-color: #f2ca63;
+                    }
+
+                    button:nth-child(2) {
+                        background-color: #bd2727;
+                    }
+
+                    button {
+                        font-size: 12px;
+                        color: black;
+                    }
+                }
+            }
+
+
+        }
+
+        .pkm-favorite {
+            width: 200px;
+            text-align: center;
+
+            i {
+                font-size: 30px;
+                color: #f2ca63;
+            }
+        }
+    }
+}
+
+.pkm-paginate {
+    margin-top: 15px;
+}
+
+::ng-deep ngb-pagination {
+
+    .pagination>li:first-child>a,
+    .pagination>li:first-child>span {
+        border-radius: 50% !important;
+        padding: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        background: none;
+        border: none;
+        font-size: 25px;
+        align-items: center;
+        color: #000 !important;
+    }
+
+    .pagination>li:last-child>a,
+    .pagination>li:last-child>span {
+        border-radius: 50% !important;
+        padding: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        background: none;
+        border: none;
+        font-size: 25px;
+        align-items: center;
+        color: #000 !important;
+    }
+
+
+    .pagination>li>a {
+        border-radius: 40% !important;
+        padding: 5px;
+        width: 40px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        margin: 0 5px 0 0;
+        font-size: 18px;
+        background: #FF2222;
+        border: none;
+        color: #fff !important;
+    }
+}
