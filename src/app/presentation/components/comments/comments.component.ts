@@ -15,12 +15,12 @@ import { comment } from 'src/app/infra/store/action/comment/comment.actions';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
+
 export class CommentsComponent implements OnInit {
 
   public pkmId!: number;
   loading: boolean = true;
   formSaveComment!: FormGroup;
-  
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -61,7 +61,6 @@ export class CommentsComponent implements OnInit {
   get formParams() {
     return this.formSaveComment;
   }
-
 
   saveComment(){
     this.store.dispatch(comment({text: this.formrFieldComment, id: this.pkmId, name: this.formrFieldName}));

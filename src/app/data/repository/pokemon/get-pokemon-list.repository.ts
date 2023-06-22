@@ -41,7 +41,6 @@ export class GetPokemonListRepository extends GetPokemonListRepositorie {
     }
 
     getPokemonDetail(param: number): Observable<PkmDataModel> {
-        console.log(param)
         return this.http.get<PkmDataModel>(`https://pokeapi.co/api/v2/ability/${param}`);
     }
 

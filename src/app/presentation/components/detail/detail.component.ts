@@ -27,9 +27,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   constructor(
     private detailPkm: RequestPokemonDetaiUsesCase,
     public activeModal: NgbActiveModal
-  ) {
-
-   }
+  ) {}
 
   ngOnInit(): void {
     this.getDatail(this.pkmId)

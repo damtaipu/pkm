@@ -49,7 +49,6 @@ export class ListComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private store: Store<{ textcomment: any, favoritePkm: any }>
   ) {
-
     this.showComment$ = store.select('textcomment');
     this.showFavorite$ = store.select('favoritePkm');
   }
