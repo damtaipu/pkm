@@ -52,10 +52,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
     this.showComment$ = store.select('textcomment');
     this.showFavorite$ = store.select('favoritePkm');
-
-    this.showFavorite$.subscribe(e => {
-      console.log(e)
-    })
   }
 
   //---------------------------
