@@ -3,13 +3,13 @@ Este é um sistema desenvolvido em Angular 16 que tem como objetivo realizar tes
 
 ### Funcionalidades
 O sistema oferece as seguintes funcionalidades de teste:
-
-Filtro de Busca por Nome de Pokémon: É possível pesquisar Pokémon pelo seu nome utilizando um filtro de busca. Os resultados serão exibidos na página, permitindo testar a funcionalidade de filtragem.
-Paginação dos Resultados: Os resultados da pesquisa são exibidos em uma lista paginada, permitindo a navegação entre as páginas de resultados. Essa funcionalidade pode ser testada para verificar o comportamento correto da paginação.
-Gerenciamento de Estado com NGRX: O sistema utiliza a biblioteca NGRX para gerenciar o estado dos comentários e favoritos dos Pokémon. É possível testar a adição, remoção e visualização dos comentários e favoritos, verificando se o estado é mantido corretamente.
-Utilização das Bibliotecas Bootstrap e NG Bootstrap: Os modais do sistema são implementados utilizando as bibliotecas Bootstrap e NG Bootstrap. É possível testar a abertura e o fechamento dos modais, bem como a interação com os componentes presentes neles.
-Lazy Loading: O sistema utiliza o recurso de Lazy Loading, que otimiza o carregamento da aplicação, dividindo-a em módulos carregados sob demanda. Isso permite uma melhor performance e uma experiência de usuário mais rápida.
-FormControls e Formulários Reativos: O sistema utiliza os formControls do Angular para implementar formulários reativos, proporcionando validações e interações avançadas nos campos de entrada de dados.
+- Controle no carregamento (loadind) das imagens.
+- Filtro de Busca por Nome de Pokémon: É possível pesquisar Pokémon pelo seu nome utilizando um filtro de busca. Os resultados serão exibidos na página, permitindo testar a funcionalidade de filtragem.
+- Paginação dos Resultados: Os resultados da pesquisa são exibidos em uma lista paginada, permitindo a navegação entre as páginas de resultados. Essa funcionalidade pode ser testada para verificar o comportamento correto da paginação.
+- Gerenciamento de Estado com NGRX: O sistema utiliza a biblioteca NGRX para gerenciar o estado dos comentários e favoritos dos Pokémon. É possível testar a adição, remoção e visualização dos comentários e favoritos, verificando se o estado é mantido corretamente.
+- Utilização das Bibliotecas Bootstrap e NG Bootstrap: Os modais do sistema são implementados utilizando as bibliotecas Bootstrap e NG Bootstrap. É possível testar a abertura e o fechamento dos modais, bem como a interação com os componentes presentes neles.
+- Lazy Loading: O sistema utiliza o recurso de Lazy Loading, que otimiza o carregamento da aplicação, dividindo-a em módulos carregados sob demanda. Isso permite uma melhor performance e uma experiência de usuário mais rápida.
+- FormControls e Formulários Reativos: O sistema utiliza os formControls do Angular para implementar formulários reativos, proporcionando validações e interações avançadas nos campos de entrada de dados.
 
 ### Arquitetura Clean e Inversão de Dependências
 O sistema adota o padrão de arquitetura clean, que tem como objetivo separar as responsabilidades e manter uma estrutura de código limpa e organizada. A arquitetura é dividida em camadas, cada uma com sua responsabilidade específica.
